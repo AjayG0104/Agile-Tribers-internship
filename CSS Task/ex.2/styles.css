@@ -1,0 +1,76 @@
+/* Reset default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Container for the text content */
+.text-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Header Section styling */
+h1 {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem; /* Large font size */
+    font-weight: bold; /* Bold text */
+    color: #4a90e2; /* Blue color */
+    margin-bottom: 20px;
+}
+
+/* Navigation Bar styling */
+nav {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2rem; /* Medium font size */
+    font-weight: normal; /* Regular weight */
+    color: #333; /* Dark gray color */
+    margin-bottom: 20px;
+}
+
+/* Content Wrapper (Index and Content Section) */
+.content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+/* Index styling */
+aside {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem; /* Medium font size */
+    font-weight: normal; /* Regular weight */
+    color: #555; /* Dark gray color */
+    flex: 1; /* Takes 1 part of the space */
+    text-align: left;
+    padding: 10px;
+    background-color: #f4f4f4; /* Light gray background */
+    border: 1px solid #ccc;
+}
+
+/* Content Section styling */
+section {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem; /* Medium font size */
+    font-weight: normal; /* Regular weight */
+    color: #555; /* Dark gray color */
+    flex: 3; /* Takes 3 parts of the space */
+    text-align: left;
+    padding: 10px;
+    background-color: #e2e2e2; /* Light gray background */
+    border: 1px solid #ccc;
+}
+
+/* Footer Section styling */
+footer {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem; /* Medium font size */
+    font-weight: normal; /* Regular weight */
+    color: #333; /* Dark gray color */
+    padding: 10px;
+    background-color: #d9d9d9; /* Light gray background */
+    border: 1px solid #ccc;
+}

@@ -1,0 +1,25 @@
+body {
+frame:100;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+header, nav, section, aside, article, footer {
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+header { background-color: #f4f4f4; }
+nav { background-color: #e2e2e2; }
+section { 
+    display: flex;
+    background-color: #d9d9d9;
+}
+aside { 
+    flex: 1;
+    background-color: #c9c9c9;
+}
+article { 
+    flex: 3;
+    background-color: #b9b9b9;
+}
+footer { background-color: #a9a9a9; }

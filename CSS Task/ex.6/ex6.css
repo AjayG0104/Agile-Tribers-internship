@@ -1,0 +1,56 @@
+/* Reset default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Container for the entire layout */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+}
+
+/* Header styling */
+header {
+    background-color: #033774; /* Blue */
+    color: rgb(219, 113, 175);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Navigation styling */
+nav {
+    background-color: #141313; /* Dark gray */
+    color: rgb(238, 23, 23);
+    padding: 10px;
+    text-align: center;
+}
+
+/* Article styling */
+article {
+    background-color: #6857cc; /* Light gray */
+    padding: 20px;
+    text-align: center;
+    flex: 1; /* Takes remaining space */
+}
+
+/* Image styling */
+img {
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(79, 202, 106, 0.2); /* Shadow effect */
+    object-fit: cover; /* Ensures the image covers the area */
+    width: 100%; /* Responsive width */
+    max-width: 400px; /* Maximum width */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Space below the image */
+}
+
+/* Footer styling */
+footer {
+    background-color: #9e5252; /* Dark gray */
+    color: white;
+    padding: 10px;
+    text-align: center;
+}

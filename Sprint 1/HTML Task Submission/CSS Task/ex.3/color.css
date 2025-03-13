@@ -1,0 +1,59 @@
+/* Reset default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Container for the entire layout */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+}
+
+/* Header styling */
+header {
+    background-color: #4a90e2; /* Blue */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Navigation Bar styling */
+nav {
+    background-color: #333; /* Dark gray */
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Main Content Area (main) */
+main {
+    display: flex;
+    flex: 1; /* Takes remaining space */
+}
+
+/* Aside (Sidebar) styling */
+aside {
+    background-color: #f4f4f4; /* Light gray */
+    padding: 20px;
+    flex: 1; /* Takes 1 part of the space */
+    text-align: center;
+}
+
+/* Section (Main Content) styling */
+section {
+    background-color: #e2e2e2; /* Light gray */
+    padding: 20px;
+    flex: 3; /* Takes 3 parts of the space */
+    text-align: center;
+}
+
+/* Footer styling */
+footer {
+    background-color: #333; /* Dark gray */
+    color: white;
+    padding: 10px;
+    text-align: center;
+}

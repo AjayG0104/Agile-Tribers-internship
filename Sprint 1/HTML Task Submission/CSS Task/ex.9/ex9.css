@@ -1,0 +1,104 @@
+/* Reset default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Grid container for the entire layout */
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        "header"
+        "intro-copy"
+        "hero-image"
+        "call-to-action"
+        "features"
+        "more-copy"
+        "call-to-action-2"
+        "footer";
+    gap: 10px;
+    padding: 10px;
+}
+
+/* Header styling */
+header {
+    grid-area: header;
+    background-color: #4a90e2; /* Blue */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Intro Copy styling */
+.intro-copy {
+    grid-area: intro-copy;
+    background-color: #f4f4f4; /* Light gray */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Hero Image styling */
+.hero-image {
+    grid-area: hero-image;
+    background-color: #e2e2e2; /* Light gray */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Call to Action styling */
+.call-to-action {
+    grid-area: call-to-action;
+    background-color: #4a90e2; /* Blue */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Features styling */
+.features {
+    grid-area: features;
+    background-color: #f4f4f4; /* Light gray */
+    padding: 20px;
+    text-align: center;
+}
+
+/* More Copy styling */
+.more-copy {
+    grid-area: more-copy;
+    background-color: #e2e2e2; /* Light gray */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Second Call to Action styling */
+.call-to-action-2 {
+    grid-area: call-to-action-2;
+    background-color: #4a90e2; /* Blue */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Footer styling */
+footer {
+    grid-area: footer;
+    background-color: #333; /* Dark gray */
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Responsive Design using Media Queries */
+@media (min-width: 600px) {
+    .grid-container {
+        grid-template-areas:
+            "header header"
+            "intro-copy hero-image"
+            "call-to-action call-to-action"
+            "features more-copy"
+            "call-to-action-2 call-to-action-2"
+            "footer footer";
+        grid-template-columns: 1fr 1fr; /* Two columns for larger screens */
+    }
+}

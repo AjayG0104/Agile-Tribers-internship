@@ -1,0 +1,56 @@
+/* Reset default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Grid container for the entire layout */
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        "header"
+        "nav"
+        "slideshow"
+        "footer";
+    grid-template-rows: auto auto 1fr auto; /* Header, Nav, Slideshow, Footer */
+    min-height: 100vh; /* Full viewport height */
+}
+
+/* Header styling */
+header {
+    grid-area: header;
+    background-color: #4a90e2; /* Blue */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Navigation Bar styling */
+nav {
+    grid-area: nav;
+    background-color: #333; /* Dark gray */
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Slideshow styling */
+.slideshow {
+    grid-area: slideshow;
+    background-color: #e2e2e2; /* Light gray */
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Footer styling */
+footer {
+    grid-area: footer;
+    background-color: #333; /* Dark gray */
+    color: white;
+    padding: 10px;
+    text-align: center;
+}

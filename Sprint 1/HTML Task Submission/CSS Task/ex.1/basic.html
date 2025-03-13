@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<h2>ex.1 basic layout</h2>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex-1: Basic Layout</title>
+    <style>
+        /* Reset default margin and padding */
+        body, html {
+            margin: 10px;
+            padding: 40px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container for the entire layout */
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Full viewport height */
+        }
+
+        /* Header styling */
+        header {
+            background-color: #4a90e2; /* Blue */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Navigation bar styling */
+        nav {
+            background-color: #333; /* Dark gray */
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Main content area (section) */
+        section {
+            display: flex;
+            flex: 1; /* Takes remaining space */
+        }
+
+        /* Aside (sidebar) styling */
+        aside {
+            background-color: #f4f4f4; /* Light gray */
+            padding: 20px;
+            flex: 1; /* Takes 1 part of the space */
+            text-align: center;
+        }
+
+        /* Article (main content) styling */
+        article {
+            background-color: #e2e2e2; /* Light gray */
+            padding: 20px;
+            flex: 3; /* Takes 3 parts of the space */
+            text-align: center;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #333; /* Dark gray */
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div style="border: 5px solid black; padding: 10px;">
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Header</h1>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav>
+            <p>Navigation Bar</p>
+        </nav>
+
+        <!-- Main Content Area -->
+        <section>
+            <!-- Aside (Sidebar) -->
+            <aside>
+                <p>Aside</p>
+            </aside>
+
+            <!-- Article (Main Content) -->
+            <article>
+                <p>Article</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Footer</p>
+        </footer>
+    </div></div>
+</body>
+</html>

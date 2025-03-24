@@ -1,0 +1,21 @@
+// Arithmetic functions using javascript
+function appendToDisplay(value) {
+  const display = document.getElementById('display');
+  display.value += value;
+}
+function clearDisplay() {
+  const display = document.getElementById('display');
+  display.value = '';
+}
+
+// function to calculate 
+function calculateResult() {
+  const display = document.getElementById('display');
+  try {
+    const result = eval(display.value);
+    display.value = result;
+  } catch (error) {
+    // invalid expressions show error
+    display.value = 'Error';
+  }
+}

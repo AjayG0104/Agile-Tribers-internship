@@ -1,0 +1,55 @@
+/* Main container */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Top row */
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  height: 20%;
+}
+
+.top-row div {
+  background-color: #d98b8b; /* Red color */
+  flex: 1;
+  margin: 0 5px;
+}
+
+/* Content section */
+.content {
+  display: flex;
+  flex: 1;
+}
+
+.left {
+  background-color: #7a7a7a; /* Gray color */
+  flex: 2;
+  position: relative;
+}
+
+.left .yellow-square {
+  background-color: #ffeb3b; /* Yellow color */
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.right div {
+  background-color: #8b8b6b; /* Green color */
+  flex: 1;
+  margin: 5px 0;
+}

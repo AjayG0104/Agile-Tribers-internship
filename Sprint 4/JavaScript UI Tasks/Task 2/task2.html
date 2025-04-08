@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Combined JavaScript UI Tasks</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    section {
+      margin-bottom: 40px;
+      padding: 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    h2 {
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 8px;
+    }
+    .container {
+      margin-bottom: 15px;
+    }
+    .box {
+      padding: 15px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    .highlight {
+      background-color: #ffff99;
+    }
+    .special {
+      color: #0066cc;
+      font-weight: bold;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    #result {
+      padding: 15px;
+      background-color: #e8f4fc;
+      border-radius: 5px;
+      border-left: 4px solid #3498db;
+    }
+    input[type="radio"], input[type="checkbox"] {
+      margin-right: 8px;
+    }
+    label {
+      margin-right: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript UI Task Practice</h1>
+
+  <!-- Task 1: Fetch & Display Selected Values -->
+  <section id="task1">
+    <h2>Task 1: Fetch & Display Selected Values</h2>
+    
+    <div class="container">
+      <h3>Select your favorite color:</h3>
+      <input type="radio" name="color" id="red" value="Red">
+      <label for="red">Red</label>
+      <input type="radio" name="color" id="blue" value="Blue">
+      <label for="blue">Blue</label>
+      <input type="radio" name="color" id="green" value="Green">
+      <label for="green">Green</label>
+    </div>
+
+    <div class="container">
+      <h3>Select your interests:</h3>
+      <input type="checkbox" id="sports" value="Sports">
+      <label for="sports">Sports</label>
+      <input type="checkbox" id="music" value="Music">
+      <label for="music">Music</label>
+      <input type="checkbox" id="reading" value="Reading">
+      <label for="reading">Reading</label>
+    </div>
+
+    <button id="submit-btn">Get Selections</button>
+    <p id="result">Your selections will appear here...</p>
+  </section>
+
+  <!-- Task 2: Exploring DOM Selection Methods -->
+  <section id="task2">
+    <h2>Task 2: Exploring DOM Selection Methods</h2>
+    
+    <div id="unique-box" class="box">
+      This is a unique box with an ID
+    </div>
+
+    <div class="box special">
+      This is a special box (first of class)
+    </div>
+
+    <div class="box">
+      Regular box 1
+    </div>
+
+    <div class="box special">
+      This is another special box
+    </div>
+
+    <button id="action-btn">Apply DOM Changes</button>
+  </section>
+
+  <script>
+    // Task 1: Fetch & Display Selected Values
+    document.getElementById('submit-btn').addEventListener('click', function() {
+      // Get selected radio button using querySelector
+      const selectedColor = document.querySelector('input[name="color"]:checked');
+      const colorValue = selectedColor ? selectedColor.value : 'No color selected';
+      
+      // Get selected checkboxes using querySelectorAll
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+      const selectedInterests = Array.from(checkboxes).map(cb => cb.value);
+      
+      // Display results using innerHTML
+      document.getElementById('result').innerHTML = `
+        <strong>Selected Color:</strong> ${colorValue}<br>
+        <strong>Selected Interests:</strong> ${selectedInterests.join(', ') || 'None'}
+      `;
+    });
+
+    // Task 2: Exploring DOM Selection Methods
+    document.getElementById('action-btn').addEventListener('click', function() {
+      // 1. Using getElementById
+      const uniqueBox = document.getElementById('unique-box');
+      uniqueBox.textContent += " - Modified by getElementById!";
+      console.log('getElementById result:', uniqueBox);
+
+      // 2. Using querySelector
+      const firstSpecialBox = document.querySelector('.special');
+      firstSpecialBox.classList.add('highlight');
+      console.log('querySelector result:', firstSpecialBox);
+
+      // 3. Using querySelectorAll
+      const allBoxes = document.querySelectorAll('.box');
+      allBoxes.forEach((box, index) => {
+        box.style.border = '2px solid #' + Math.floor(Math.random()*16777215).toString(16);
+      });
+      console.log('querySelectorAll results:', allBoxes);
+    });
+  </script>
+</body>
+</html>

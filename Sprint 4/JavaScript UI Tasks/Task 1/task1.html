@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>All JavaScript Tasks Combined</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      section {
+        margin-bottom: 30px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      h2 {
+        color: #333;
+        margin-top: 0;
+      }
+      button, input {
+        margin: 5px;
+        padding: 8px 12px;
+      }
+      #task7-div {
+        width: 200px;
+        height: 100px;
+        background-color: lightblue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JavaScript Event Handling Tasks</h1>
+
+    <!-- Task 1: Button Click Event -->
+    <section id="task1">
+      <h2>Task 1: Button Click Event</h2>
+      <button id="task1-btn">Click Here</button>
+    </section>
+
+    <!-- Task 2: Button Click - Sum of Two Variables -->
+    <section id="task2">
+      <h2>Task 2: Sum Calculation</h2>
+      <button id="task2-btn">Calculate Sum</button>
+    </section>
+
+    <!-- Task 3: Input Box Value Retrieval -->
+    <section id="task3">
+      <h2>Task 3: Input Retrieval</h2>
+      <input type="text" id="task3-input" placeholder="Enter text here" />
+      <button id="task3-btn">Log Input</button>
+    </section>
+
+    <!-- Task 4: Input Box Value Display -->
+    <section id="task4">
+      <h2>Task 4: Input Display</h2>
+      <input type="text" id="task4-input" placeholder="Enter text here" />
+      <button id="task4-btn">Display Input</button>
+      <p id="task4-output"></p>
+    </section>
+
+    <!-- Task 5: Input Box - OnChange Event -->
+    <section id="task5">
+      <h2>Task 5: OnChange Event</h2>
+      <input type="text" id="task5-input" placeholder="Type here" />
+    </section>
+
+    <!-- Task 6: Double Click Event -->
+    <section id="task6">
+      <h2>Task 6: Double Click</h2>
+      <button id="task6-btn">Double Click Me</button>
+    </section>
+
+    <!-- Task 7: Mouse Enter and Leave Event -->
+    <section id="task7">
+      <h2>Task 7: Mouse Events</h2>
+      <div id="task7-div">Hover over me</div>
+    </section>
+
+    <!-- Task 8: Key Press and Key Release Event -->
+    <section id="task8">
+      <h2>Task 8: Key Events</h2>
+      <input type="text" id="task8-input" placeholder="Press keys here" />
+    </section>
+
+    <script>
+      // Task 1: Button Click Event
+      document.getElementById('task1-btn').addEventListener('click', function() {
+        this.textContent = 'Clicked!';
+        console.log('Task 1: Button was clicked');
+      });
+
+      // Task 2: Sum Calculation
+      document.getElementById('task2-btn').addEventListener('click', function() {
+        const num1 = 10;
+        const num2 = 20;
+        const sum = num1 + num2;
+        this.textContent = `Sum: ${sum}`;
+        console.log(`Task 2: Sum is ${sum}`);
+      });
+
+      // Task 3: Input Retrieval
+      document.getElementById('task3-btn').addEventListener('click', function() {
+        const inputValue = document.getElementById('task3-input').value;
+        console.log(`Task 3: Input value is "${inputValue}"`);
+        this.textContent = 'Logged!';
+      });
+
+      // Task 4: Input Display
+      document.getElementById('task4-btn').addEventListener('click', function() {
+        const inputValue = document.getElementById('task4-input').value;
+        document.getElementById('task4-output').textContent = inputValue;
+        this.textContent = 'Displayed!';
+        console.log(`Task 4: Displaying input "${inputValue}"`);
+      });
+
+      // Task 5: OnChange Event
+      document.getElementById('task5-input').addEventListener('change', function() {
+        console.log(`Task 5: Input changed to "${this.value}"`);
+        this.style.border = '2px solid green';
+      });
+
+      // Task 6: Double Click
+      document.getElementById('task6-btn').addEventListener('dblclick', function() {
+        this.textContent = 'Double Clicked!';
+        console.log('Task 6: Button was double-clicked');
+      });
+
+      // Task 7: Mouse Events
+      const task7Div = document.getElementById('task7-div');
+      task7Div.addEventListener('mouseenter', function() {
+        this.style.backgroundColor = 'lightgreen';
+        console.log('Task 7: Mouse entered div');
+      });
+      task7Div.addEventListener('mouseleave', function() {
+        this.style.backgroundColor = 'lightblue';
+        console.log('Task 7: Mouse left div');
+      });
+
+      // Task 8: Key Events
+      const task8Input = document.getElementById('task8-input');
+      task8Input.addEventListener('keydown', function() {
+        this.style.borderColor = 'blue';
+        console.log('Task 8: Key pressed');
+      });
+      task8Input.addEventListener('keyup', function() {
+        this.style.borderColor = 'black';
+        console.log('Task 8: Key released');
+      });
+    </script>
+  </body>
+</html>

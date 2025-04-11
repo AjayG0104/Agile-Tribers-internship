@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4: Fetching Data from JSON File</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #userList {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        #userList li {
+            background-color: #f8f9fa;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .loading {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task 4: Fetching Data from JSON File</h1>
+    <p>This task demonstrates fetching and displaying user data from a local JSON file.</p>
+    
+    <button id="fetchBtn">Fetch User Data</button>
+    <button id="resetBtn" class="hidden">Reset</button>
+    
+    <div id="status" class="status hidden"></div>
+    
+    <ul id="userList"></ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fetchBtn = document.getElementById('fetchBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const statusDiv = document.getElementById('status');
+            const userList = document.getElementById('userList');
+            
+            // Function to reset the UI
+            function resetUI() {
+                statusDiv.className = 'status hidden';
+                userList.innerHTML = '';
+                resetBtn.classList.add('hidden');
+                fetchBtn.disabled = false;
+            }
+            
+            // Function to display users
+            function displayUsers(users) {
+                userList.innerHTML = '';
+                
+                if (users.length === 0) {
+                    const li = document.createElement('li');
+                    li.textContent = 'No users found in the data file.';
+                    userList.appendChild(li);
+                    return;
+                }
+                
+                users.forEach(user => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <strong>Name:</strong> ${user.name}<br>
+                        <strong>Age:</strong> ${user.age}<br>
+                        <strong>City:</strong> ${user.city}
+                    `;
+                    userList.appendChild(li);
+                });
+            }
+            
+            // Fetch data when button is clicked
+            fetchBtn.addEventListener('click', async function() {
+                // Disable button during fetch
+                fetchBtn.disabled = true;
+                resetBtn.classList.add('hidden');
+                
+                // Show loading status
+                statusDiv.className = 'status loading';
+                statusDiv.textContent = 'Loading user data...';
+                
+                try {
+                    // First check if the file exists
+                    const response = await fetch('data.json');
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
+                    const users = await response.json();
+                    
+                    // Validate the JSON structure
+                    if (!Array.isArray(users)) {
+                        throw new Error('Data is not in expected array format');
+                    }
+                    
+                    // Show success status
+                    statusDiv.className = 'status success';
+                    statusDiv.textContent = `Successfully loaded ${users.length} users`;
+                    
+                    // Display the users
+                    displayUsers(users);
+                    
+                } catch (error) {
+                    // Show error status
+                    statusDiv.className = 'status error';
+                    
+                    // Handle specific error cases
+                    if (error.message.includes('Failed to fetch')) {
+                        statusDiv.textContent = 'Error: Could not connect to server. Please make sure you are running this through a local server.';
+                    } else if (error.message.includes('404')) {
+                        statusDiv.textContent = 'Error: data.json file not found. Please create the file in the same directory.';
+                    } else {
+                        statusDiv.textContent = `Error: ${error.message}`;
+                    }
+                    
+                    console.error('Fetch error:', error);
+                } finally {
+                    // Enable reset button
+                    resetBtn.classList.remove('hidden');
+                }
+            });
+            
+            // Reset button functionality
+            resetBtn.addEventListener('click', resetUI);
+        });
+    </script>
+</body>
+</html>

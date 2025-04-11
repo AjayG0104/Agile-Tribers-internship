@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Tasks 1-3: Objects & JSON</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .task {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 12px;
+            border-radius: 4px;
+            overflow-x: auto;
+            border-left: 3px solid #3498db;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .property {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .value {
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Tasks: Working with Objects & JSON</h1>
+
+    <!-- Task 1 -->
+    <div class="task">
+        <h2>Task 1: Creating & Updating an Object</h2>
+        <p>Create an object with properties: <span class="property">name</span>, <span class="property">age</span>, and <span class="property">city</span>.</p>
+        <button onclick="runTask1()">Run Task 1</button>
+        <div id="task1Result" class="result"></div>
+    </div>
+
+    <!-- Task 2 -->
+    <div class="task">
+        <h2>Task 2: Object with a Method</h2>
+        <p>Create an object with <span class="property">firstName</span>, <span class="property">lastName</span>, and a <span class="property">getFullName()</span> method.</p>
+        <button onclick="runTask2()">Run Task 2</button>
+        <div id="task2Result" class="result"></div>
+    </div>
+
+    <!-- Task 3 -->
+    <div class="task">
+        <h2>Task 3: Working with JSON Strings</h2>
+        <p>Parse a JSON string with properties: <span class="property">name</span>, <span class="property">email</span>, and <span class="property">skills</span> (array).</p>
+        <button onclick="runTask3()">Run Task 3</button>
+        <div id="task3Result" class="result"></div>
+    </div>
+
+    <script>
+        // Task 1: Creating & Updating an Object
+        function runTask1() {
+            const resultDiv = document.getElementById('task1Result');
+            
+            // Create object
+            const person = {
+                name: "Ajith Kumar",
+                age: 38,
+                city: "India"
+            };
+            
+            // Display original object
+            let html = `
+                <h3>Original Object:</h3>
+                <pre>${JSON.stringify(person, null, 2)}</pre>
+                <p><span class="property">Name:</span> <span class="value">${person.name}</span></p>
+                <p><span class="property">Age:</span> <span class="value">${person.age}</span></p>
+                <p><span class="property">City:</span> <span class="value">${person.city}</span></p>
+            `;
+            
+            // Update age
+            person.age = 41;
+            
+            // Display updated object
+            html += `
+                <h3>Updated Object (age changed to 31):</h3>
+                <pre>${JSON.stringify(person, null, 2)}</pre>
+            `;
+            
+            resultDiv.innerHTML = html;
+        }
+
+        // Task 2: Object with a Method
+        function runTask2() {
+            const resultDiv = document.getElementById('task2Result');
+            
+            // Create object with method
+            const person = {
+                firstName: "Ajith",
+                lastName: "Kumar",
+                getFullName: function() {
+                    return `${this.firstName} ${this.lastName}`;
+                }
+            };
+            
+            // Call method and display result
+            const fullName = person.getFullName();
+            resultDiv.innerHTML = `
+                <h3>Object Structure:</h3>
+                <pre>${JSON.stringify({firstName: person.firstName, lastName: person.lastName}, null, 2)}</pre>
+                <h3>Method Call Result:</h3>
+                <p><span class="property">Full Name:</span> <span class="value">${fullName}</span></p>
+            `;
+        }
+
+        // Task 3: Working with JSON Strings
+        function runTask3() {
+            const resultDiv = document.getElementById('task3Result');
+            
+            // JSON string
+            const jsonString = `{
+                "name": "Ajith Kumar",
+                "email": "ak@example.com",
+                "skills": ["JavaScript", "HTML", "CSS"]
+            }`;
+            
+            // Parse JSON
+            const user = JSON.parse(jsonString);
+            
+            // Display results
+            resultDiv.innerHTML = `
+                <h3>Original JSON String:</h3>
+                <pre>${jsonString}</pre>
+                
+                <h3>Parsed JavaScript Object:</h3>
+                <pre>${JSON.stringify(user, null, 2)}</pre>
+                
+                <h3>Accessed Properties:</h3>
+                <p><span class="property">Name:</span> <span class="value">${user.name}</span></p>
+                <p><span class="property">Email:</span> <span class="value">${user.email}</span></p>
+                <p><span class="property">Skills:</span> <span class="value">${user.skills.join(", ")}</span></p>
+            `;
+        }
+    </script>
+</body>
+</html>

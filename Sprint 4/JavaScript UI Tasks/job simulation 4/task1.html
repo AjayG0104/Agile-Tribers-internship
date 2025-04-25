@@ -1,0 +1,133 @@
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission Task</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, textarea { width: 100%; padding: 8px; box-sizing: border-box; }
+        .error { color: red; font-size: 0.9em; margin-top: 5px; }
+        button { padding: 10px 15px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        .user-data { background-color: #f5f5f5; padding: 20px; border-radius: 5px; margin-top: 20px; display: none; }
+        .data-item { margin-bottom: 10px; }
+        .data-label { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>User Information Form</h1>
+    <form id="userForm">
+        <div class="form-group">
+            <label for="name">Name*:</label>
+            <input type="text" id="name" required>
+            <div id="nameError" class="error"></div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email*:</label>
+            <input type="email" id="email" required>
+            <div id="emailError" class="error"></div>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" pattern="[0-9]{10}">
+            <div id="phoneError" class="error"></div>
+        </div>
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" rows="4"></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="userDataDisplay" class="user-data">
+        <h2>Submitted Data</h2>
+        <div id="displayContent"></div>
+        <button onclick="resetForm()">Submit Another</button>
+    </div>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            // Reset error messages
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('phoneError').textContent = '';
+            
+            // Validate inputs
+            let isValid = true;
+            
+            if (!name) {
+                document.getElementById('nameError').textContent = 'Name is required';
+                isValid = false;
+            }
+            
+            if (!email) {
+                document.getElementById('emailError').textContent = 'Email is required';
+                isValid = false;
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email';
+                isValid = false;
+            }
+            
+            if (phone && !/^\d{10}$/.test(phone)) {
+                document.getElementById('phoneError').textContent = 'Phone must be 10 digits';
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Create user object
+                const userData = {
+                    name,
+                    email,
+                    phone: phone || 'N/A',
+                    message: message || 'N/A',
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Store in localStorage
+                localStorage.setItem('userFormData', JSON.stringify(userData));
+                
+                // Display the data
+                displaySubmittedData(userData);
+            }
+        });
+
+        function displaySubmittedData(userData) {
+            document.getElementById('userForm').style.display = 'none';
+            const displayDiv = document.getElementById('displayContent');
+            displayDiv.innerHTML = `
+                <div class="data-item"><span class="data-label">Name:</span> ${userData.name}</div>
+                <div class="data-item"><span class="data-label">Email:</span> ${userData.email}</div>
+                <div class="data-item"><span class="data-label">Phone:</span> ${userData.phone}</div>
+                <div class="data-item"><span class="data-label">Message:</span> ${userData.message}</div>
+                <div class="data-item"><span class="data-label">Submitted at:</span> ${new Date(userData.timestamp).toLocaleString()}</div>
+            `;
+            document.getElementById('userDataDisplay').style.display = 'block';
+        }
+
+        function resetForm() {
+            document.getElementById('userForm').style.display = 'block';
+            document.getElementById('userForm').reset();
+            document.getElementById('userDataDisplay').style.display = 'none';
+        }
+
+        // Check for existing data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedData = localStorage.getItem('userFormData');
+            if (savedData) {
+                displaySubmittedData(JSON.parse(savedData));
+            }
+        });
+    </script>
+</body>
+</html>

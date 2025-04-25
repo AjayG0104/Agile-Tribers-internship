@@ -1,0 +1,116 @@
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic To-Do List</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        #taskInput { width: 70%; padding: 8px; }
+        #addTaskBtn { padding: 8px 15px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        #addTaskBtn:hover { background-color: #45a049; }
+        #taskList { list-style-type: none; padding: 0; margin-top: 20px; }
+        .task-item { background-color: #f5f5f5; padding: 10px; margin-bottom: 5px; border-radius: 3px; display: flex; justify-content: space-between; align-items: center; }
+        .task-text { flex-grow: 1; }
+        .task-actions { display: flex; gap: 5px; }
+        .edit-btn { background-color: #2196F3; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+        .delete-btn { background-color: #f44336; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+        .error { color: red; font-size: 0.9em; margin-top: 5px; }
+        .empty-state { color: #666; text-align: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Dynamic To-Do List</h1>
+    <div>
+        <input type="text" id="taskInput" placeholder="Enter a new task">
+        <button id="addTaskBtn">Add Task</button>
+        <div id="taskError" class="error"></div>
+    </div>
+    <ul id="taskList"></ul>
+    <div id="emptyState" class="empty-state">No tasks yet. Add your first task above!</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const taskInput = document.getElementById('taskInput');
+            const addTaskBtn = document.getElementById('addTaskBtn');
+            const taskList = document.getElementById('taskList');
+            const taskError = document.getElementById('taskError');
+            const emptyState = document.getElementById('emptyState');
+            
+            // Add task function
+            function addTask(taskText) {
+                if (!taskText.trim()) {
+                    taskError.textContent = 'Task cannot be empty';
+                    return;
+                }
+                
+                taskError.textContent = '';
+                
+                const li = document.createElement('li');
+                li.className = 'task-item';
+                
+                const taskSpan = document.createElement('span');
+                taskSpan.className = 'task-text';
+                taskSpan.textContent = taskText;
+                
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'task-actions';
+                
+                const editBtn = document.createElement('button');
+                editBtn.className = 'edit-btn';
+                editBtn.textContent = 'Edit';
+                editBtn.onclick = function() {
+                    const newText = prompt('Edit your task:', taskSpan.textContent);
+                    if (newText !== null && newText.trim() !== '') {
+                        taskSpan.textContent = newText.trim();
+                    } else if (newText !== null) {
+                        alert('Task cannot be empty');
+                    }
+                };
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.onclick = function() {
+                    if (confirm('Are you sure you want to delete this task?')) {
+                        li.remove();
+                        checkEmptyState();
+                    }
+                };
+                
+                actionsDiv.appendChild(editBtn);
+                actionsDiv.appendChild(deleteBtn);
+                
+                li.appendChild(taskSpan);
+                li.appendChild(actionsDiv);
+                
+                taskList.appendChild(li);
+                taskInput.value = '';
+                emptyState.style.display = 'none';
+            }
+            
+            // Check if task list is empty
+            function checkEmptyState() {
+                if (taskList.children.length === 0) {
+                    emptyState.style.display = 'block';
+                }
+            }
+            
+            // Add task on button click
+            addTaskBtn.addEventListener('click', function() {
+                addTask(taskInput.value);
+            });
+            
+            // Add task on Enter key
+            taskInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addTask(taskInput.value);
+                }
+            });
+            
+            // Initialize empty state
+            checkEmptyState();
+        });
+    </script>
+</body>
+</html>
